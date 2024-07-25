@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="22420124072024" author="einherjar">
+        <createTable tableName="users">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints unique="true" nullable="false" />
+            </column>
+            <column name="email" type="varchar(100)">
+                <constraints unique="true" nullable="false" />
+            </column>
+            <column name="password_hash" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="first_name" type="varchar(50)" />
+            <column name="last_name" type="varchar(50)" />
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" >
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="22420224072024" author="einherjar">
+        <createTable tableName="habits">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="text" />
+            <column name="frequency" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" >
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" >
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="22420324072024" author="einherjar">
+        <createTable tableName="user_habits">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_user_id" references="users(id)" />
+            </column>
+            <column name="habit_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_habit_id" references="habits(id)" />
+            </column>
+            <column name="start_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="end_date" type="date" />
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" >
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" >
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="22420424072024" author="einherjar">
+        <createTable tableName="habit_log">
+            <column name="log_id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_habit_id" type="int" >
+                <constraints nullable="false" foreignKeyName="fk_user_habit_id" references="user_habits(id)"/>
+            </column>
+            <column name="log_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="completed" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="comments" type="text" />
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" >
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
