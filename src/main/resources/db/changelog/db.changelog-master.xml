@@ -7,7 +7,7 @@
 
     <changeSet id="22420124072024" author="einherjar">
         <createTable tableName="users">
-            <column name="id" type="int">
+            <column name="id" type="int" autoIncrement="true" >
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="username" type="varchar(50)">
@@ -32,7 +32,7 @@
 
     <changeSet id="22420224072024" author="einherjar">
         <createTable tableName="habits">
-            <column name="id" type="int">
+            <column name="id" type="int" autoIncrement="true" >
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="name" type="varchar(100)">
@@ -53,7 +53,7 @@
 
     <changeSet id="22420324072024" author="einherjar">
         <createTable tableName="user_habits">
-            <column name="id" type="int">
+            <column name="id" type="int" autoIncrement="true" >
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="user_id" type="int">
@@ -78,7 +78,7 @@
 
     <changeSet id="22420424072024" author="einherjar">
         <createTable tableName="habit_log">
-            <column name="log_id" type="int">
+            <column name="id" type="int" autoIncrement="true" >
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="user_habit_id" type="int" >
