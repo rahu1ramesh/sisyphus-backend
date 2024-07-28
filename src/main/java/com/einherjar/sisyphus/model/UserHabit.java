@@ -36,16 +36,6 @@ public class UserHabit {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-
     public UserHabit() {
     }
 
@@ -54,6 +44,16 @@ public class UserHabit {
         this.habit = habit;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
     }
 
     public int getId() {

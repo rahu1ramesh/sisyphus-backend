@@ -30,6 +30,14 @@ public class Habit {
     private LocalDateTime updatedAt;
 
 
+    public Habit() {
+    }
+
+    public Habit(String name, String description, String frequency) {
+        this.name = name;
+        this.description = description;
+        this.frequency = frequency;
+    }
 
     @PrePersist
     protected void onCreate() {
@@ -39,15 +47,6 @@ public class Habit {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public Habit() {
-    }
-
-    public Habit(String name, String description, String frequency) {
-        this.name = name;
-        this.description = description;
-        this.frequency = frequency;
     }
 
     public int getId() {

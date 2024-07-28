@@ -7,9 +7,14 @@ import java.util.Optional;
 
 public interface UserHabitRepository {
     Optional<UserHabit> findById(int id);
+
     List<UserHabit> findByUserId(int userId);
+
     List<UserHabit> findByHabitId(int habitId);
+
     Optional<UserHabit> findByUserIdAndHabitId(int userId, int habitId);
+
     void save(UserHabit userHabit);
+
     void delete(UserHabit userHabit);
 }

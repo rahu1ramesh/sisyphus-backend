@@ -77,7 +77,7 @@
             <column name="user_habit_id" type="int" >
                 <constraints nullable="false" foreignKeyName="fk_user_habit_id" references="user_habits(id)"/>
             </column>
-            <column name="log_date" type="date">
+            <column name="log_date" type="timestamp">
                 <constraints nullable="false" />
             </column>
             <column name="completed" type="boolean">
