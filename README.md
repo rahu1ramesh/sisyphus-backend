@@ -37,25 +37,6 @@ To set up the backend environment locally and start developing, follow these ste
 6. **Access the API**:
    The backend API will be accessible at `http://localhost:8080`.
 
-## Configuration
-
-Update the `src/main/resources/application.properties` file with your PostgreSQL database credentials:
-```properties
-# PostgreSQL Database (production)
-spring.datasource.url=jdbc:postgresql://localhost:5432/sisyphus
-spring.datasource.username=postgres
-spring.datasource.password=password
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-
-# H2 Database (development)
-#spring.datasource.url=jdbc:h2:mem:testdb
-#spring.datasource.driverClassName=org.h2.Driver
-#spring.datasource.username=sa
-#spring.datasource.password=password
-#spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-#spring.h2.console.enabled=true
-```
-
 ## Usage
 
 Once the backend environment is set up and the application server is running, you can start interacting with the API endpoints to perform CRUD operations on habits and manage user authentication.
