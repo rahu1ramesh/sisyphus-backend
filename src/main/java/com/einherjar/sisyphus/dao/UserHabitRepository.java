@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserHabitRepository {
-    Optional<UserHabit> findById(int id);
+    Optional<UserHabit> findById(int userHabitId);
 
     List<UserHabit> findByUserId(int userId);
 
@@ -15,6 +15,8 @@ public interface UserHabitRepository {
     Optional<UserHabit> findByUserIdAndHabitId(int userId, int habitId);
 
     void save(UserHabit userHabit);
+
+    void update(UserHabit userHabit);
 
     void delete(UserHabit userHabit);
 }

@@ -17,36 +17,35 @@ public class UserHabitRepositoryImpl implements UserHabitRepository {
     private EntityManager entityManager;
 
     @Override
-    public Optional<UserHabit> findById(int id) {
-        return Optional.ofNullable(entityManager.find(UserHabit.class, id));
+    public Optional<UserHabit> findById(int userHabitId) {
+        return Optional.ofNullable(entityManager.find(UserHabit.class, userHabitId));
     }
 
     @Override
     public List<UserHabit> findByUserId(int userId) {
-        return entityManager.createQuery("SELECT uh FROM UserHabit uh WHERE uh.user.userId = :userId", UserHabit.class)
-                .setParameter("userId", userId)
-                .getResultList();
+        return entityManager.createQuery("SELECT uh FROM UserHabit uh WHERE uh.user.userId = :userId", UserHabit.class).setParameter("userId", userId).getResultList();
     }
 
     @Override
     public List<UserHabit> findByHabitId(int habitId) {
-        return entityManager.createQuery("SELECT uh FROM UserHabit uh WHERE uh.habit.habitId = :habitId", UserHabit.class)
-                .setParameter("habitId", habitId)
-                .getResultList();
+        return entityManager.createQuery("SELECT uh FROM UserHabit uh WHERE uh.habit.habitId = :habitId", UserHabit.class).setParameter("habitId", habitId).getResultList();
     }
 
     @Override
     public Optional<UserHabit> findByUserIdAndHabitId(int userId, int habitId) {
-        return entityManager.createQuery("SELECT uh FROM UserHabit uh WHERE uh.user.userId = :userId AND uh.habit.habitId = :habitId", UserHabit.class)
-                .setParameter("userId", userId)
-                .setParameter("habitId", habitId)
-                .getResultList().stream().findFirst();
+        return entityManager.createQuery("SELECT uh FROM UserHabit uh WHERE uh.user.userId = :userId AND uh.habit.habitId = :habitId", UserHabit.class).setParameter("userId", userId).setParameter("habitId", habitId).getResultList().stream().findFirst();
     }
 
     @Transactional
     @Override
     public void save(UserHabit userHabit) {
         entityManager.persist(userHabit);
+    }
+
+    @Transactional
+    @Override
+    public void update(UserHabit userHabit) {
+        entityManager.merge(userHabit);
     }
 
     @Transactional

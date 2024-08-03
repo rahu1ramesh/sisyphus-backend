@@ -2,8 +2,11 @@ package com.einherjar.sisyphus.model;
 
 import jakarta.persistence.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.annotations.JdbcTypeCode;
 
 import java.time.LocalDateTime;
+
+import static org.hibernate.type.SqlTypes.TINYINT;
 
 @Entity
 @Table(name = "habit_log")
@@ -11,16 +14,17 @@ public class HabitLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, updatable = false)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_habit_id", referencedColumnName = "id")
     private UserHabit userHabit;
 
     @Column(name = "log_date", nullable = false)
     private LocalDateTime logDate;
 
+    @JdbcTypeCode(TINYINT)
     @Column(name = "completed", nullable = false)
     private Boolean completed;
 
@@ -47,10 +51,6 @@ public class HabitLog {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public UserHabit getUserHabit() {

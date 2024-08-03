@@ -18,27 +18,27 @@ public class HabitLogRepositoryImpl implements HabitLogRepository {
     private EntityManager entityManager;
 
     @Override
-    public Optional<HabitLog> findById(Long logId) {
+    public Optional<HabitLog> findById(int logId) {
         return Optional.ofNullable(entityManager.find(HabitLog.class, logId));
     }
 
     @Override
-    public List<HabitLog> findByUserId(Long userId) {
+    public List<HabitLog> findByUserId(int userId) {
         return entityManager.createQuery("SELECT hl FROM HabitLog hl WHERE hl.user.userId = :userId", HabitLog.class).setParameter("userId", userId).getResultList();
     }
 
     @Override
-    public List<HabitLog> findByHabitId(Long habitId) {
+    public List<HabitLog> findByHabitId(int habitId) {
         return entityManager.createQuery("SELECT hl FROM HabitLog hl WHERE hl.habit.habitId = :habitId", HabitLog.class).setParameter("habitId", habitId).getResultList();
     }
 
     @Override
-    public List<HabitLog> findByUserIdAndHabitId(Long userId, Long habitId) {
+    public List<HabitLog> findByUserIdAndHabitId(int userId, int habitId) {
         return entityManager.createQuery("SELECT hl FROM HabitLog hl WHERE hl.user.userId = :userId AND hl.habit.habitId = :habitId", HabitLog.class).setParameter("userId", userId).setParameter("habitId", habitId).getResultList();
     }
 
     @Override
-    public List<HabitLog> findByUserIdAndHabitIdAndLogDate(Long userId, Long habitId, LocalDate logDate) {
+    public List<HabitLog> findByUserIdAndHabitIdAndLogDate(int userId, int habitId, LocalDate logDate) {
         return entityManager.createQuery("SELECT hl FROM HabitLog hl WHERE hl.user.userId = :userId AND hl.habit.habitId = :habitId AND hl.logDate = :logDate", HabitLog.class).setParameter("userId", userId).setParameter("habitId", habitId).setParameter("logDate", logDate).getResultList();
     }
 
@@ -46,6 +46,12 @@ public class HabitLogRepositoryImpl implements HabitLogRepository {
     @Override
     public void save(HabitLog habitLog) {
         entityManager.persist(habitLog);
+    }
+
+    @Transactional
+    @Override
+    public void update(HabitLog habitLog) {
+        entityManager.merge(habitLog);
     }
 
     @Transactional

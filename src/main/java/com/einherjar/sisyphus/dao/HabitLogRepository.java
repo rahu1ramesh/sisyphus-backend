@@ -7,17 +7,19 @@ import java.util.List;
 import java.util.Optional;
 
 public interface HabitLogRepository {
-    Optional<HabitLog> findById(Long logId);
+    Optional<HabitLog> findById(int logId);
 
-    List<HabitLog> findByUserId(Long userId);
+    List<HabitLog> findByUserId(int userId);
 
-    List<HabitLog> findByHabitId(Long habitId);
+    List<HabitLog> findByHabitId(int habitId);
 
-    List<HabitLog> findByUserIdAndHabitId(Long userId, Long habitId);
+    List<HabitLog> findByUserIdAndHabitId(int userId, int habitId);
 
-    List<HabitLog> findByUserIdAndHabitIdAndLogDate(Long userId, Long habitId, LocalDate logDate);
+    List<HabitLog> findByUserIdAndHabitIdAndLogDate(int userId, int habitId, LocalDate logDate);
 
     void save(HabitLog habitLog);
+
+    void update(HabitLog habitLog);
 
     void delete(HabitLog habitLog);
 }

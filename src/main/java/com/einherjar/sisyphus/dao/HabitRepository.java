@@ -9,5 +9,7 @@ public interface HabitRepository {
 
     void save(Habit habit);
 
+    void update(Habit habit);
+
     void delete(Habit habit);
 }

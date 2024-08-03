@@ -28,6 +28,12 @@ public class HabitRepositoryImpl implements HabitRepository {
 
     @Transactional
     @Override
+    public void update(Habit habit) {
+        entityManager.merge(habit);
+    }
+
+    @Transactional
+    @Override
     public void delete(Habit habit) {
         if (entityManager.contains(habit)) {
             entityManager.remove(habit);
